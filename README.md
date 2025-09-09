@@ -1,10 +1,9 @@
-Tugas Individu 1 
-Kanayra Maritza Sanika Adeeva
-Kelas C - 2406437880
+# Tugas Individu 1 
+# Kanayra Maritza Sanika Adeeva
+# Kelas C - 2406437880
 
-Tautan menuju aplikasi pws yang sudah dideploy: 
+# Tautan menuju aplikasi pws yang sudah dideploy: 
 https://kanayra-maritza-kavza.pbp.cs.ui.ac.id/
-
 
 
 
@@ -64,21 +63,20 @@ Step 20 : Setelah semuanya selesai, saya mendeploy semuanya ke PWS seperti yang 
 
 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
 
-1. Client(user) mengirim request (mengetik link) melalui internet/jaringan yang akan diterima oleh Django server  . 
-2. Django melihat urls.py dan mencocokkan pola URL disitu dengan request, lalu menentukan function/class mana yang harus dipanggil dari views.py.
+- Client(user) mengirim request (mengetik link) melalui internet/jaringan yang akan diterima oleh Django server
 
-3. Views.py berisi logika bagaimana menangani request #menentukan apa yang harus dilakukan.Jika diperlukan, view akan mengambil data dari database menggunakan models.py.
+- Django melihat urls.py dan mencocokkan pola URL disitu dengan request, lalu menentukan function/class mana yang harus dipanggil dari views.py.
 
-4. Pada models.py, terdapat definisi tabel database dalam bentuk class Python. Setelah data didapat dari models.py, views.py akan memanggil fungsi render() dimana render menggabungkan template HTML dengan data (context).
+- Views.py berisi logika bagaimana menangani request #menentukan apa yang harus dilakukan.Jika diperlukan, view akan mengambil data dari database menggunakan models.py.
 
-5.Lalu, dikirim kembali sebagai HTTP Response kembali response ke browser client
+- Pada models.py, terdapat definisi tabel database dalam bentuk class Python. Setelah data didapat dari models.py, views.py akan memanggil fungsi render() dimana render menggabungkan template HTML dengan data (context).
 
-6. Browser client menerima response HTML, membacanya dan menampilkannya menjadi halaman web yang bisa kita liat di layar.
+- Lalu, dikirim kembali sebagai HTTP Response kembali response ke browser client
+
+-  Browser client menerima response HTML, membacanya dan menampilkannya menjadi halaman web yang bisa kita liat di layar.
 
 
 # Gambar Flow Request Client: Terdapat pada folder pictures yang berisi Request Client Flow.jpg
-
-
 
 
 3. Jelaskan peran settings.py dalam proyek Django!
