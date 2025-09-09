@@ -3,6 +3,7 @@
 import os
 import sys
 
+# Manage.py untuk tugas individu
 
 def main():
     """Run administrative tasks."""
