@@ -76,62 +76,62 @@ Step 20 : Setelah semuanya selesai, saya mendeploy semuanya ke PWS seperti yang 
 6. Browser client menerima response HTML, membacanya dan menampilkannya menjadi halaman web yang bisa kita liat di layar.
 
 
-# Gambar Flow Request Client: 
+# Gambar Flow Request Client: Terdapat pada folder pictures yang berisi Request Client Flow.jpg
 
-![alt text](<../pictures/Request Client Flow.jpg>)
 
 
 
 3. Jelaskan peran settings.py dalam proyek Django!
 Jawab: 
-1. Settings.py menyimpan pengaturan keamanan proyek yang meliputi:
+- Settings.py menyimpan pengaturan keamanan proyek yang meliputi:
 SECRET_KEY -> kunci rahasia untuk signing session, password reset token, dan lain lain. 
 DEBUG -> mode debug yang dimana disetting true untuk development dan false untuk production
 ALLOWED_HOSTS -> daftar host yang diizinkan mengakses aplikasi
 
-2. Settings.py juga menyimpan pengaturan aplikasi
-INSTALLED_APPS -> menympan semua dafar app Django yang aktif, contoh dari tutorial kami menambah app 'main' dimana di dalamnya  terdapat file models.py, views.py dan template serta lainnya.
+- Settings.py juga menyimpan pengaturan aplikasi:
+INSTALLED_APPS -> menyimpan semua dafar app Django yang aktif, contoh dari tutorial kami menambah app 'main' dimana di dalamnya  terdapat file models.py, views.py dan template serta lainnya.
 
-3. MIDDLEWARE -> menyimpan daftar komponen yang memproses request berurutan. 
+- MIDDLEWARE -> menyimpan daftar komponen yang memproses request berurutan. 
 
-4. Terdapat ROOT_URLCONF yaitu file utama yang memetakan URL ke view serta TEMPLATES yaitu pengaturan untuk template engine Django
+- Terdapat ROOT_URLCONF yaitu file utama yang memetakan URL ke view serta TEMPLATES yaitu pengaturan untuk template engine Django
 
-5. Tempat django membuat koneksi database dan menjalankan migrasi
+- Tempat django membuat koneksi database dan menjalankan migrasi
 
 Kesimpulannya settings.py menentukan apa aplikasi yang dijalankan, bagaimana cara menjalankannya serta dimana resource disimpan.
 
 
+# Cara kerja migrasi database Django
 4. Bagaimana cara kerja migrasi database di Django?
 Jawab: 
 Pada tutorial dijelaskan bahwa migrasi wajib dilakukan untuk merefleksikan perubahan setiap kali kita melakukan perubahan pada model. Cara kerjanya adalah:
 
-1. Ketika kita menjalankan python manage.py makemigrations, django membuat konfigurasi proyek dan semua AppConfig dari INSTALLED_APPS pada settings.py sehingga tau app "main" ada dimana
+- Ketika kita menjalankan python manage.py makemigrations, django membuat konfigurasi proyek dan semua AppConfig dari INSTALLED_APPS pada settings.py sehingga tau app "main" ada dimana
 
-2. Django membangun 2 state yaitu old_state yaitu struktur yang terakhir tercatat (jika sudah ada sebelumnya) dan new_state yaitu struktur yang terbaru based on models.py. 
+- Django membangun 2 state yaitu old_state yaitu struktur yang terakhir tercatat (jika sudah ada sebelumnya) dan new_state yaitu struktur yang terbaru based on models.py. 
 
-3. Lalu terdapat Autodetector yang mendeteksi perbedaan dan menghasilkan daftar operations.
+- Lalu terdapat Autodetector yang mendeteksi perbedaan dan menghasilkan daftar operations.
 
-4. Setelah itu, terdapat migrationwriter yang menulis file migrasi Python yang berisi class Migration dengan atribut dependencies dan operations. Dalam hal ini "0001_initial.py"
+- Setelah itu, terdapat migrationwriter yang menulis file migrasi Python yang berisi class Migration dengan atribut dependencies dan operations. Dalam hal ini "0001_initial.py"
 
-5. Lalu ketika user menjalankan python manage.py migrate perintah di command prompt, django membaca semua file migrasi (yang belum diterapkan)
+- Lalu ketika user menjalankan python manage.py migrate perintah di command prompt, django membaca semua file migrasi (yang belum diterapkan)
 
-6. Setelah itu, membangun dependency graph dari semua migrasi YANG TUJUANNYA menentukan urutan eksekusi. 
+- Setelah itu, membangun dependency graph dari semua migrasi YANG TUJUANNYA menentukan urutan eksekusi. 
 
-7. Lalu, terdapat migrationExecutor yang mengeksekusi migrasi satu per satu mengikuti urutan dan dependency. 
+- Lalu, terdapat migrationExecutor yang mengeksekusi migrasi satu per satu mengikuti urutan dan dependency. 
 
-8. Setelah operasi sukses, Django menambahkan record ke tabel django_migrations, hasil akhirnya adalah tabel fisik di database berubah sesuai instruksi.
+- Setelah operasi sukses, Django menambahkan record ke tabel django_migrations, hasil akhirnya adalah tabel fisik di database berubah sesuai instruksi.
 
 
 
 5. Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?
 Jawab : 
-1. Django memiliki kerangka kerja yang well-organized jadi membuat kami mudah untuk belajar. Berdasarkan data yang saya dapat, Django menyediakan API, library, hingga modul. Lalu, juga framework ini memakai programming language python yang dimana itu adalah high level programming language. Lalu, dengan arsitektur MTV yang sudah kita pelajari, kita bisa membuat template script bawaan yang bisa langsung dipakai.
+- Django memiliki kerangka kerja yang well-organized jadi membuat kami mudah untuk belajar. Berdasarkan data yang saya dapat, Django menyediakan API, library, hingga modul. Lalu, juga framework ini memakai programming language python yang dimana itu adalah high level programming language. Lalu, dengan arsitektur MTV yang sudah kita pelajari, kita bisa membuat template script bawaan yang bisa langsung dipakai.
 
-2. Pengembangan dan perawatan yang mudah. Dalam hal ini django menerapkan model view controller yang membagi kode ke bagian2 jelas yaitu model utk data, view utk logics, dan template untuk tampilan. Struktur kode ini mudah dikembangkan dalam skala aplikasi yang semakin besar. 
+- Pengembangan dan perawatan yang mudah. Dalam hal ini django menerapkan model view controller yang membagi kode ke bagian2 jelas yaitu model utk data, view utk logics, dan template untuk tampilan. Struktur kode ini mudah dikembangkan dalam skala aplikasi yang semakin besar. 
 
-3. Unggul dalam fitur keamanan, misal ketika menulis username dan password django menyimpan informasi krenensial ke dalam database sehingga lebih aman. Django punya berbagai fitur keamanan otomatis, contoh mencegah SQL injection, XSS, dan CSRF. Jadi pengguna yang masih awam tidak perlu ribet memikirkan celah keamanan. 
+- Unggul dalam fitur keamanan, misal ketika menulis username dan password django menyimpan informasi krenensial ke dalam database sehingga lebih aman. Django punya berbagai fitur keamanan otomatis, contoh mencegah SQL injection, XSS, dan CSRF. Jadi pengguna yang masih awam tidak perlu ribet memikirkan celah keamanan. 
 
-4. Django memiliki fleksibilitas yang tinggi dan bisa beroperasi di berbagai platform. Bisa di server hosting manapun, kita ambil contoh dari yang umum yaitu Windows, Linux, dan MacOS sehingga cocok untuk permulaan pembelajaran pengembangan software. 
+- Django memiliki fleksibilitas yang tinggi dan bisa beroperasi di berbagai platform. Bisa di server hosting manapun, kita ambil contoh dari yang umum yaitu Windows, Linux, dan MacOS sehingga cocok untuk permulaan pembelajaran pengembangan software. 
 
 
 6. Apakah ada feedback untuk asisten dosen tutorial 1 yang telah kamu kerjakan sebelumnya?
