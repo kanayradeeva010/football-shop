@@ -139,16 +139,60 @@ Jawab : Asdos untuk Tutorial 1 kemarin sangat helpful meski lab dilaksanakan sec
 # Kanayra Maritza Sanika Adeeva
 # Kelas C - 2406437880
 
+To-Do List:
 - Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID. (Sudah)
 - Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 1. (Sudah)
-- Membuat halaman yang menampilkan data objek model yang memiliki tombol "Add" yang akan redirect ke halaman form, serta tombol "Detail" pada setiap data objek model yang akan menampilkan halaman detail objek.
- Membuat halaman form untuk menambahkan objek model pada app sebelumnya.
- Membuat halaman yang menampilkan detail dari setiap data objek model.
- Menjawab beberapa pertanyaan berikut pada README.md pada root folder.
- Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
- Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
- Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
- Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
- Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
- Apakah ada feedback untuk asdos di tutorial 2 yang sudah kalian kerjakan?
- Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+- Membuat halaman yang menampilkan data objek model yang memiliki tombol "Add" yang akan redirect ke halaman form, serta tombol "Detail" pada setiap data objek model yang akan menampilkan halaman detail objek. (Sudah)
+- Membuat halaman form untuk menambahkan objek model pada app sebelumnya. (Sudah)
+- Membuat halaman yang menampilkan detail dari setiap data objek model.
+
+
+# Jawab: 
+# Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+-> Data delivery mendukung real-time processing dan decision making yang dimana ini penting supaya platform bisa segera mengeksekusi tindakan sesuai kondisi terbaru tanpa menunggu batch processing manual.
+-> Mengurangi risiko data inconsistency dalam hal ini seperti data yang hilang, terduplikasi, atau tidak sinkron ketika berpindah antar komponen. Jadi dengan adanya data delivery, data tetap utuh dan konsisten selama proses transfer dari sumber ke tujuan sehingga semua bagian platform bekerja dengan informasi yang sama.
+-> Setiap action dan proses yang terjadi pada platform dapat dilacak dan direcord karena ini penting dalam memberi visibilitas penuh terhadap bagaimana data mengalir di sistem yang penting untuk debugging. 
+-> Memungkinkan platform menangani volume yang data besar tanpa kehilangan performa karena seiring bertumbuhnya platform, volume data yang diproses juga meningkat. Data delivery dirancang untuk mendukung skalabilitas yang dapat memungkinkan platform tetap bisa beroperasi stabil meski menerima data yang besar (tidak ada downtime)
+
+
+# Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+Berdasarkan studi dan artikel yang ada memang JSON lebih sering dipilih dibanding XML karena alasan berikut:
+- File JSON rata-rata ukurannya lebih kecil dibanding XML karena JSON tidak memakai tag pembuka atau penutup yang banyak "<>" sehingga dapat mengurangi latency (penundaan waktu yang terjadi antara saat tindakan dimulai dan saat hasilnya diamati)
+- Sintaksnya yang lebih sederhana sehingga mudah ditulis dan dibaca saat dan membuat mudah saat mendefinisikan objek oleh manusia.
+- JSON merupakan native support di beberapa platform dan bahasa pemrograman lain contohnya javascript sehingga integrasi jadi lebih mudah. Jadi kita bisa mengurai JSON dengan fungsi JavaScript dan waktunya lebih cepat dan efisien.
+- Format JSON yang menggunakan key value membuat parsingnya lebih cepat dibanding XML.  
+
+# Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+Secara garis besar method is_valid() memastikan apakah data yang disubmit ke form sesuai aturan yang sudah ditentukan di form. Aturan ini bisa berupa required field, panjang karakter, maupun validasi lainnya yang dibuat oleh developer. Seperti contoh, apakah field yang wajib diisi (required=True) benar-benar ada isinya, apakah panjang data sesuai batas max_length, min_length. Ketika semua data valid, Django akan menyimpan hasil data yang sudah dibersihkan ke atribut cleaned_data,sebaliknya jika ada data yang tidak sesuai aturan maka Django memberi pesan error kepada user. 
+
+Kita membutuhkan method tersebut supaya data yang masuk ke database bersih dan sesuai aturan, kemudian tidak perlu juga untuk membuat logic yang mengecek satu per satu karena sudah dihandle Django. Setelah itu, user bisa mendapat feedback langsung jika mereka mengisi form dengan format yang salah jadi terdapat feedback secara jelas untuk user. Dengan validasi yang ada di awal, data yang salah dapat langsung dihentikan sebelum dipakai ke tahap selanjutnya (jadi potensi error berkurang)
+
+
+# Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+csrf_token disisipkan di setiap form di Django yang berfungsi memastikan bahwa form benar benar dikirim dari situs kita sendiri bukan dari eksternal, jadi tiap ada request POST masuk, Django akan memverifikasi token ini. Web saat ini seringkali memakai session login, ketika user login browser mengirimkan cookie session ke server in every request. Namun, cookie juga terkirim walau request dari situs lain (bukan situs kita sendiri), tanpa csrf_token server tidak bisa membedakan apakah request benar-benar dibuat dari form di situs yang sah atau diam diam dikirim oleh situs luar. Oleh karena itu, kita butuh csrf_token karena tiap form akan diberi kode unik yang hanya valid untuk sesi user tersebut. Kode ini dikirim bersama request POST. 
+
+Penyerang bisa memanfaatkan tidak adanya csrf_token melalui tahap di bawah:
+- Korban login pada situs target (browser menyimpan cookie session)
+- Penyerang mengelabui korban untuk membuka halaman tidak sah dimana halaman itu membuat browser korban mengirim request ke situs target
+- Cookie session dikirim otomatis oleh browser, server (tidak sah) melihat request itu sebagai request dari korban yang sah
+- disini hal pentingnya: Jika server tidak ada mekanisme tambahan untuk memverifikasi asal request, server bakal menjalani aksi tersebut dan penyerang mencapai plannya.
+
+# Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+- Langkah pertama: Mengimplementasikan skeleton sebagai kerangka views website supaya terdapat konsistensi desain website dan meminimalisir redundansi. Pembuatan skeleton tersebut dilakukan dengan cara membuat direktori template di root folder dan mengisinya dengan base.html, setelah itu kita harus memastikan di settings.py bahwa base.html terdetect sebagai template. Template ini akan diextend oleh file lain pada direktori yang berbeda, dalam hal ini diextend oleh main.
+- Langkah kedua: Membuat form untuk menambahkan objek model produk baru pada app pada direktori main dengan cara membuat file python baru yang bernama forms.py. Disini kita harus mengimport ModelForm sebagai parameter pada class productForm. Pada class forms.py itu kita tambahkan kategori sesuai yang sudah kita buat di tugas individu 1. 
+- Langkah ketiga: Supaya halaman form bisa digunakan untuk menambah objek produk dan menampilkan detail data, kita harus menambah 2 function baru pada views.py yaitu create_product yang menerima parameter request dan show_product yang menerima parameter request dan id produk. 2 fungsi ini berupa perintah yang diinisiasi.  Create_product dipakai untuk menghasilkan form yang dapat menambah data product automatically ketika disubmit. Show_product dipakai untuk mengambil objek Product berdasaekan id, dan jika tidak ditemukan akan dikembalikan halaman 404. 
+- Langkah keempat: Seperti biasa, kita harus menambahkan path URL ke variabel urlpatterns pada urls.py dan mengimport fungsi yang sudah dibuat
+- Langkah kelima: Setelah membuat fungsi pada views dan membuat routing URL masing-masing fungsi pada views yang telah saya sebutkan, sekarang kita membuat supaya halaman yang menampilkan data objek model memiliki tombol Add Product yang bakal redirect ke halaman form dan tombol Detail. Hal itu dilakukan dengan cara mengupdate main.html.
+- Langkah keenam: 
+Untuk membuat tombol add product yang akan redirect ke halaman form kita butuh memodifikasi main.html dan membuat create_product.html untuk halaman form untuk menambah objek model. Lalu, untuk menampilkan detail data objek model maka kita membuat template news_detail.html. 
+- Langkah ketujuh: Pastikan kita menambahkan URL deployment PWS pada CSRF_TRUSTED_ORIGINS.
+- Langkah kedelapan: Setelah itu kita ingin supaya kita bisa melihat objek yang ditambahkan dalam formal XML dan JSON secara menyeluruh. Maka dari itu kita membuat fungsi baru bernama show_xml dan show_json. Dalam masing2 method terdapat variabel yang menyimpan hasil query seluruh data pada Product. Dalam fungsi itu terdapat serializers untuk mentranslate objem model menjadi format lain dalam hal ini JSON atau XML. Lalu, setelah itu kita menambahkan path url seperti biasa pada urlpattern untuk mengakses fungsi di views. 
+- Langkah kesembilan: Saat ini kita ingin melihat objek dalam format XML by ID dan JSON by ID, oleh karena itu caranya sama seperti langkah ke delapan yaitu membuat fungsi pada views namun kali ini dengan parameter request dan news_id. Namun saat ini variabel dalam fungsi menyimpan hasil query data dengan id tertentu menggunaakan filter() atau get().Perbedaan dengan 2 fungsi sebelumnya adalah, di dua fungsi ini jika id produk tidak ditemukan akan ada status 404 sebagai responsenya.
+- Langkah kesembilan: Jika fungsi sudah dibuat pada views dah sudah juga ditambahkan ke urlpatterns maka sekarang kita akan melihat data tersebut menggunakan postman. 
+
+- SELESAI - 
+
+
+# Apakah ada feedback untuk asdos di tutorial 2 yang sudah kalian kerjakan?
+Jawab: 
+Secara keseluruhan, kinerja asdos pada tutorial 2 kemarin sangat membantu, walaupun lab dilaksanakan secara offline namun asdos tetap semangat dan sangat cepat tanggap untuk ngasih kami solusi atas beberapa kendala yang kami alami, khususnya saya. Terimakasih saya ucapkan kepada tim asdos dan sukses selalu kak. 
