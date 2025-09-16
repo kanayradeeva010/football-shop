@@ -196,3 +196,10 @@ Untuk membuat tombol add product yang akan redirect ke halaman form kita butuh m
 # Apakah ada feedback untuk asdos di tutorial 2 yang sudah kalian kerjakan?
 Jawab: 
 Secara keseluruhan, kinerja asdos pada tutorial 2 kemarin sangat membantu, walaupun lab dilaksanakan secara offline namun asdos tetap semangat dan sangat cepat tanggap untuk ngasih kami solusi atas beberapa kendala yang kami alami, khususnya saya. Terimakasih saya ucapkan kepada tim asdos dan sukses selalu kak. 
+
+# Hasil akses URL pada postman 
+![alt text](<Screenshot 2025-09-16 225930.png>) menunjukkan json
+![alt text](<Screenshot 2025-09-16 230042.png>) menunjukkan xml
+![alt text](image.png)  -> menunjukkan json by id produk
+![alt text](<Screenshot 2025-09-16 230201.png>) -> menunjukkan xml by id produk
+
