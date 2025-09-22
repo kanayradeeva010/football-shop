@@ -1,6 +1,6 @@
  {% extends "base.html" %}
  {% block content %}
- <h1>Football Shop</h1>
+ <h1>Kavza</h1>
 
  <h5>NPM: </h5>
  <p>{{ npm }}<p>
@@ -11,11 +11,25 @@
  <h5>Class:</h5>
  <p>{{ class }}</p>
 
- <a href="{% url 'main:create_product' %}">
-  <button>+ Add Product</button>
+<a href="{% url 'main:create_product' %}">
+  <button type="button">Add Product</button>
 </a>
 
+<a href="{% url 'main:logout' %}">
+  <button>Logout</button>
+</a>
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+
 <hr>
+
+<a href="?filter=all">
+    <button type="button">All Products</button>
+</a>
+<a href="?filter=my">
+    <button type="button">My Products</button>
+</a> 
+
 
 {% if not product_list %}
 <p>Belum ada data produk pada product shop.</p>

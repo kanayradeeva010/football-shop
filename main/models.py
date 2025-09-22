@@ -1,6 +1,9 @@
 import uuid
 from django.db import models
 
+from django.contrib.auth.models import User
+ 
+    
 class Product(models.Model):
     CATEGORY_CHOICES = [
         ('shoes', 'Shoes'),
@@ -9,7 +12,7 @@ class Product(models.Model):
         ('training', 'Training'),
         ('equipment', 'Equipment'),
         ('ball', 'Ball'),
-        ('fans', 'Fans Merchandise')
+        ('fans', 'Fans Merchandise'),
     ] 
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -21,6 +24,7 @@ class Product(models.Model):
     product_stock = models.PositiveIntegerField(default=0)
     product_views = models.PositiveIntegerField(default=0)
     is_featured = models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     
     def __str__(self):
         return self.name

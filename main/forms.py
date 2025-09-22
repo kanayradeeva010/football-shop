@@ -4,6 +4,5 @@ from main.models import Product
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'price', 'description', 'thumbnail', 'category', 'product_stock', 'product_views', 'is_featured']
-        # Atribut dari models.
-        exclude = ['product_views']
+        fields = ['name', 'price', 'description', 'thumbnail', 'category', 'product_stock', 'is_featured']
+        

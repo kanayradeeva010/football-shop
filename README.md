@@ -203,3 +203,17 @@ Secara keseluruhan, kinerja asdos pada tutorial 2 kemarin sangat membantu, walau
 ![alt text](image.png)  -> menunjukkan json by id produk
 ![alt text](<Screenshot 2025-09-16 230201.png>) -> menunjukkan xml by id produk
 
+
+# Tugas Individu 4
+# Kanayra Maritza Sanika Adeeva
+# Kelas C - 2406437880
+
+# Apa itu Django AuthenticationForm? Jelaskan juga kelebihan dan kekurangannya.
+
+# Apa perbedaan antara autentikasi dan otorisasi? Bagaiamana Django mengimplementasikan kedua konsep tersebut?
+
+# Apa saja kelebihan dan kekurangan session dan cookies dalam konteks menyimpan state di aplikasi web?
+
+# Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai? Bagaimana Django menangani hal tersebut?
+
+# Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
