@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout # Fungsi bawaan Django untuk autentikasi dan login jika autentikasi berhasil
 from django.shortcuts import render, redirect, get_object_or_404
 from main.forms import ProductForm
+from .forms import CarForm
 from main.models import Product
 from django.http import HttpResponse
 from django.core import serializers
@@ -52,6 +53,7 @@ def create_product(request):
     }
 
     return render(request, "create_product.html", context)
+
 
 
 @login_required(login_url='/login')
@@ -127,5 +129,7 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+
 
     
