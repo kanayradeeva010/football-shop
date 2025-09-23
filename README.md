@@ -270,7 +270,7 @@ Kelebihan:
 - Dapat mentransfer data dari satu halaman web ke halaman lain. 
 
 Kekurangan:
-- Session menyimpan data di server biasanya di memori atau database, setiap user yang login akan bikin data session unik, jika banyak user yang aktif sekali waktu, jumlah data sessionnya banyak dan memakan RAM atau storage server, jadi server mulai lambat karena harus simpan banyak session.
+- Session menyimpan data pada server biasanya di memori atau database, setiap user yang login akan bikin data session unik, jika banyak user yang aktif sekali waktu, jumlah data sessionnya banyak dan memakan RAM atau storage server, jadi server mulai lambat karena harus simpan banyak session.
 - Session punya masa aktif yang terbatas (seperti 30 menit) kalau user lama tidak aktif harus login ulang 
 - Adanya dependensi cookie yaitu server mengandalkan cookie supaya tahu request berasal dari user yang sama kalau cookie hilang maka session tidak bisa jalan.
 
