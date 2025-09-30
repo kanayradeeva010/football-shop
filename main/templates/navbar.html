@@ -5,7 +5,7 @@
 
         <!-- Logo -->
         <div class="flex items-center">
-          <h1 class="text-xl font-extrabold flex gap-2"> 
+          <h1 class="text-lg md:text-xl font-extrabold flex gap-2"> 
             <span class="text-[#000080]">Kavza</span>
             <span class="text-red-600 hover:text-red-700">Football Shop</span>
           </h1>
@@ -13,16 +13,16 @@
           
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-10 mx-auto">
-          <a href="/" class="text-black hover:text-[#000080] font-bold transition-colors">
+          <a href="/" class="text-sm text-black hover:text-[#000080] font-bold transition-colors">
             Home
           </a>
           {% for slug, display_name in PRODUCT_CATEGORIES %}
             <a href="{% url 'main:show_category' category_slug=slug %}" 
-            class="text-black hover:text-[#000080] font-bold transition-colors">
+            class="text-sm text-black hover:text-[#000080] font-bold transition-colors">
               {{ display_name }}
             </a>
           {% endfor %}
-          <a href="{% url 'main:create_product' %}" class="text-black hover:text-[#000080] font-bold transition-colors">
+          <a href="{% url 'main:create_product' %}" class="text-sm text-black hover:text-[#000080] font-bold transition-colors">
             Add New Product
           </a>
         </div>
@@ -52,17 +52,15 @@
         
         <!-- Mobile Menu Button -->
         <div class="md:hidden flex items-center">
-          <button class="mobile-menu-button p-2 text-gray-600 hover:text-gray-900 transition-colors">
+          <button class="mobile-menu-button p-2 text-gray-900 hover:text-gray-900 transition-colors">
             <span class="sr-only">Open menu</span>
             <div class="w-6 h-6 flex flex-col justify-center items-center">
               <span class="bg-current block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm"></span>
               <span class="bg-current block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5"></span>
               <span class="bg-current block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm"></span>
             </div>
-          </button>
-        </div>
-      </div>
-    </div>
+          </button> </div>
+    
 
     <!-- Mobile Menu -->
     <div class="mobile-menu hidden md:hidden bg-white border-t border-gray-200">
