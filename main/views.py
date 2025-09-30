@@ -6,8 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout # Fungsi bawaan Django untuk autentikasi dan login jika autentikasi berhasil
 from django.shortcuts import render, redirect, get_object_or_404
 from main.forms import ProductForm
-from .forms import CarForm
-from main.models import Product
+from main.models import Product, Category
 from django.http import HttpResponse
 from django.core import serializers
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm # Memudahkan membuat form pendaftaran user
@@ -16,6 +15,21 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+def product_list(request, category_slug=None):
+    categories = Category.objects.all()
+    products = Product.objects.all()
+
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = products.filter(category=category)
+    else:
+        category = None
+
+    return render(request, "main/product_list.html", {
+        "categories": categories,
+        "products": products,
+        "current_category": category
+    })
 
 @login_required(login_url='/login')
 def show_main(request):
@@ -129,6 +143,37 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_product(request, id):
+    product = get_object_or_404(Product, pk=id) # mengambil objek dari database berdasarkan primary key kalo ada disimpan ke product, kalau tidak ada kasih error halaman 404
+    form = ProductForm(request.POST or None, instance = product)
+    if form.is_valid() and request.method == 'POST':
+        form.save()
+        return redirect('main:show_main')
+    context = {
+        'form': form
+    } # bawa data dari views ke template
+
+    return render(request, "edit_product.html", context) # menggabunkan data ke file html
+
+def delete_product(request,id):
+    product = get_object_or_404(Product, pk=id)
+    product.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def show_category(request, category_slug):
+    products = Product.objects.filter(category= category_slug)
+    category_display_name = dict(Product.CATEGORY_CHOICES).get(category_slug, 'All Products')
+
+    context = {
+        'current_category': category_display_name,
+        'products': products,
+    }
+
+    return render(request, 'category.html', context)
+
+
+
 
 
 

@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block meta %}
-<title>Create Product - Kavza Football Shop</title>
+<title>Edit Product - Kavza Football Shop</title>
 {% endblock meta %}
 
 {% block content %}
@@ -16,10 +17,10 @@
     </div>
     
     <!-- Form -->
-    <div class="bg-[#FDB900] rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-2xl shadow-black/30 form form-style">
+    <div class="bg-[#FDB900] rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-2xl shadow-black/30 form-style">
       <div class="mb-8">
-        <h1 class="text-2xl font-bold text-[#000080] mb-2">Add New Product</h1>
-        <p class="text-black/80">Introduce your latest exclusive football collection to our store</p>
+        <h1 class="text-2xl font-bold text-[#000080] mb-2">Edit Product</h1>
+        <p class="text-black/80">Update product details to keep your shop up to date</p>
       </div>
       
       <form method="POST" class="space-y-6">
@@ -36,7 +37,7 @@
               <p class="mt-1 text-sm text-black/70">{{ field.help_text }}</p>
             {% endif %}
             {% for error in field.errors %}
-              <p class="mt-1 text-sm text-red-700">{{ error }}</p>
+              <p class="mt-1 text-sm text-red-600">{{ error }}</p>
             {% endfor %}
           </div>
         {% endfor %}
@@ -46,7 +47,7 @@
             Cancel
           </a>
           <button type="submit" class="bg-[#000080] text-white px-6 py-3 rounded-3xl font-medium hover:bg-[#080840] transition-colors w-auto">
-            Add New Product
+            Update Product Details
           </button>
         </div>
       </form>

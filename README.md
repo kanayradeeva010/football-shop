@@ -327,6 +327,124 @@ Checklist 2
 -> Setelah itu, saya membuat dua akun user dan data datanya untuk mengecek apakah model sudah terhubung dengan Product. Lalu, ketika saya menjalankan server halaman utama, product yang telah dibuat dengan akun sebelumnya tidak ditampilkan di halaman pengguna akun yang baru dibuat sehingga sukses untuk mengubungkan model dengan Product.
 
 
+# Tugas Individu 5
+# Kanayra Maritza Sanika Adeeva
+# Kelas C - 2406437880
+- Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Jawab: 
+Prioritas urutannya adalah sebagai berikut
+1. Inline styles -> biasanya ditulis langsung di elemen HTML dan memakai atribut style = "..."
+2. ID selectors  -> bersifat unik dan hanya boleh satu ID dengan nama yang sama di satu halaman, oleh karena itu selector berbasis ID punya prioritas lebih tinggi dibanding class atau elemen. ID biasanya muncul kalo field django form otomatis punya atribut id = "". Selector yang memakai tanda #
+contoh :
+"<input type="text" name="product_name" id="id_product_name">"
+
+3. Classes selector -> selector berbasis class lebih umum dibanding ID disini termasuk .namaClass, "[type = "text"]", :hover. Selector ini memakai tanda .
+contoh kalo di kode saya 
+"<div class="bg-[#FDB900] rounded-3xl border ... form form-style">"
+
+4. Element selector
+Paling rendah prioritasnya karena berlaku ke semua elemen jenis, selector ini merujuk langsung ke nama tag HTML, contoh elemen selector  adalah p, h1, div, a, form, button, dll
+
+
+- Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!
+Jawab: 
+jadi responsive design sendiri adalah pendekatan dalam web development yang memastikan layout dan elemen web terlihat dan berfungsi dengan baik ini penting karena :
+1. bisa mempromosikan aksesibilitas dan responsivitas design.  situs web harus dapat memiliki standar sehingga bisa diakses oleh user di berbagai perangkat yg secara langsung mendukung aksesibilitas.\
+2. menciptakan first impression yang positive dan meningkatkan keterlibatan user (engagement) akan situs web tersebut
+3. penting untuk search engine optimization, saat ini google contohnya menggunakan indeks mobile first yang artinya mereka prioritasin dan nilai peringkat website based on the mobile version. A responsive design ensure that versi mobile situs kita berkinerja baik yang secara langsung meningkatkan peringkat SEO.
+
+Aplikasi yang sudah menerapkan responsive design:
+SPOTIFY -> tampilan website bisa menyesuaikan ukuran layar yaitu saat saya buka di laptop/handphone/ipad. Misal di laptop menu tampil sebagai sidebar, sedangkan di hp menu berubah jadi ikon hamburger. Jumlah kolom playlist juga berkurang di layar kecil, hal ini bikin saya tetep nyaman akses spotify di berbagai perangkat tanpa harus zoom in zoom out
+
+mungkin kalau untuk aplikasi yang tak menerapkan responsive design saat ini jarang krn sebagian besar sudah namun, ada satu contoh tetapi versi lamanya, yaitu web kaskus. Dimana ketika di desktop laptop rapih namun ketika di smartphone menu sama kolom threadnya kecil banget terus rapat, gambar teks tidak sesuai layar dan harus geser horizontal untuk baca konten. 
+
+
+- Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+Jawab:
+Margin adalah ruang di luar border yang berfungsi memberi jarak antar elemen. Mungkin yang bedain ini sm padding adalah kalo margin itu di luar border yaitu jarak antara elemen ini dan elemen lain di sekitarnya. Cara pengimplementasian:
+- m (margin ke semua sisi atas kanan bawah kiri)
+- mt (margin  atas)
+- mb (margin  bawah)
+- ml (margin  kiri)
+- mr (margin kanan)
+- mx (margin horizontal)
+- my (margin vertikal)
+
+Contoh implementasi di register.html
+<div class="text-center mb-8">
+  <h2 class="text-3xl font-bold text-white mb-2">Join Us</h2>
+  <p class="text-gray-400">Create your Football Shop account</p>
+</div>
+
+Disini berarti mb-8 kasih jarak ke bawah antara judul dan konten setelahnya, lalu mb-2 kasih jarak kecl antara join us dengan paragraf
+
+
+Border adalah garis tepi elemen yang bisa diwarnai, diatur ketebalan, gaya (solid, dashed, dll). Sintaksnya bisa border, border-* (arah tertentu dari border bisa border-t, border-b, border-l, border-r), border-color (ini bisa pakai warna bawaan atau custom hex color). Contoh implementasi di kode saya (register.html)
+<input 
+  id="username" 
+  name="username" 
+  type="text" 
+  required 
+  class="w-full px-4 py-3 
+    bg-[#1F3993] text-gray-200 
+    border border-[#4A64C2] rounded-md 
+    focus:outline-none 
+    focus:border-white focus:ring-1 focus:ring-white">
+
+Disini warna bordernya (garis default tipis di keliling input) adalah biru dan sudut border agak melengkung, serta ketika diclick border berubah putih. 
+
+
+Padding adalah ruang di dalam border antara border dan isi elemen, ini berguna agar isi (teks, gambar) tidak terlalu mepet ke pinggir.  nah kalo padding itu lokasinya di ruang dalam border jadi jarak antara isi elemen dengan bordernya. dari yang saya coba2 tailwind punya beberapa skala bawaan mulai dari ada p-0 sampe p-96. padding disini dapat dilakukan per arah seperti pt-{size} → padding top (atas), per sumbu seperti px-{size} → padding horizontal (kiri & kanan) dan padding universal yaitu p-{size}. 
+Contoh implementasi kode:
+<div class="w-full min-h-screen flex items-center justify-center p-8 bg-white"> 
+
+disini p-8 padding bawaan tailwind artinya semua sisi dikasih padding sebesar 2 rem jadi isi dalam <div> ini ga nempel ke pinggir layar tapi masuk agak ke dalem.
+
+- Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+Jawab: 
+Flexbox adalah sistem tata letak satu dimensi yang berarti dia cuman mengatur elemen di sepajang satu sumbu pada satu waktu yaitu baris atau kolom. kegunananya adalah untuk memberi cara yang efisien untuk meratakan, mendistribusikan ruang antar elemen dalam container agar tata letak bisa adaptasi secara flekibel terhadap perubahan ukuran layar. 
+Contohnya membuat navbar/menu yang meratakan item menu ke tengah kiri atau kanan dan memberi jarak antar item secara merata.
+lalu, contoh dalam membuat card yang mastiin semua konten dalam kartu tingginya sama dan konten terusun rapih. 
+
+CSS grid layout adalah sistem tata letak 2D yang memungkinkan kita buat definisiin dan kontrol elemen dalam baris dan kolom secara simultan. Tujuannya untuk fleksibilitas yang lebih besar, disini kita bisa gunakan contohnya untuk mendefinisikan header, sidebar, main content web dengan mudah. Jadi CSS grid ini tujuan utamanya buat mengontrol penempatan elemen dalam struktur kerangka. analoginya seperti ngatur item di lemari bersusun (baris dan kolom).
+
+
+- Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+Checklist: 
+- Implementasikan fungsi untuk menghapus dan mengedit product
+edit product -> disini saya buat fungsi edit product di views dan berkas html edit_product. Setelah itu, saya membuat routing pada urls.py. Lalu, pada main.html di dalem loop product list saya perbarui untuk memunculkan tombol edit di tiap produk. Untuk edit product logic di views disambungkan ke template html berdasarkan request. Lalu, setelah itu saya membuat fungsi hapus product yang dimanaa setelah product kehapus redirect ke main. Lalu, sama seperti edit producy, saya membuat routing url pathnya dan menambahkan di template main agar tiap produk terdapat tombol hapus (dibuat pada loop product list juga). 
+
+Setelah itu disini saya memilih tailwind untuk styling aplikasi. Pertama saya menambahkan tag meta name viewport agar halaman web saya bisa menyesuaikan perilaku mobile dan menambahkan script cdn tailwind. 
+
+
+Setelah itu saya membuat naviggation bar di web saya yang bisa direct ke halaman di aplikasi saya, dimulai dengan membuat navbar.html pada templates. 
+
+Lalu, setelah selesai saya mengkonfigurasi static files (yang nanti bakal dipakai) di aplikasi saya menambahhkan middleware pada settings.py dan membuat rujukan ke static root project pada mode development dan production di settings.py. 
+
+- Kustomisasi halaman login, register, tambah product, edit product, dan detail product semenarik mungkin.
+Setelah selesai membuat navbar dan konfigurasi static files disini saya mulai dengan styling aplikasi dengan tailwind . Pertama saya membuat directory static pada root directory dan membuat file global di dalam direktory css(pada directory static). Selanjutnya saya hubungkan global.css dengan script tailwind ke base.html supaya css yang ditambah di global.css bisa digunain di template django. Lalu, file global.css yang sudah saya buat tad saya modfikasi sesuai dengan keperluan tampilan form yang membuat input lebar penuh, padding, dan ada border serta sudut elengkung. Untuk warna yang dominan itu biru yang bedain status normal, fokus, dan checked pada elemen form. Lalu untuk warna background yang sudah diisi saya memilih warna putih. Serta untuk warna background default checkbox yang blm dicentang syaa memilih abu abu terang. Setelah selesai dari ini, saya melanjutkan untuk styling di halaman login dan register. Disini saya menggunakan skema warna gelap yang didominasi biru tua dan disorot warna kuning keemasan, disini saya memastiin konten formulir ada di tengah vertikal dan horizontal layar. Untuk color palette halaman register.html juga saya samakan.
+
+
+- Kustomisasi halaman daftar product menjadi lebih menarik dan responsive. Kemudian, perhatikan kondisi berikut:
+
+Setelah selesai dengan halaman login dan register, saya lanjut styling untuk  halaman home yang berisi daftar product pada dan menampilkan detail tiap produk. Disitu, saya mengatur background dari web (yang berwarna putih) pada file main.html. Pada main.html itu juga saya menentukan warna yang sesuai untuk tulisan my products dan all products serta kalimat pembuka di atasnya.
+
+Setelah itu, saya membuat html untuk card_product supaya di main itu productnya ditampilkan dalam bentuk card yang rapih jika prodduct sudah tersimpan datanya pada suatu akun. Lalu, sesuai checklist petunjuk, program menampilkan gambar dan pesan kalo belum ada barang yang terdaftar. Oleh karena itu, saya menambahkan no-product.png ke dalam folder image pada direktori static. Setelah sudah ditambahkan, saya memakai card product dan no-image ke main.html. jadi disini ada header section filter section sama product grid. - dan sesuai checklist Untuk setiap card product, buatlah dua buah button untuk mengedit dan menghapus product pada card tersebut. Disini langsung saya buat buttonnya pada card_product. 
+
+Setekah membuat styling untuk card product pada home, saya membuat styling YANG SAMA SAMA DI HOME yaitu untuk navbar.html. Disini saya menggunakan color palette logo real madrid :V
+Tapi di navbar awal baru ada home dan add new product aja belum ada category lainnya. Jadi saya fokus untuk me-styling navbar dulu baru menambahkan produk category setelah sudah selesai styling halaman home, tambah product, edit product, dan detail product (sesuai checklist). 
+
+Setelah selesai dengan semua styling yang ada di halaman home, saya mulai membuat styling untuk halaman html tambah product, edit product, dan detail product sesuai dengan checklist. 
+
+Lalu, setelah itu saya membuat navbar yang bisa membagi produk berdasarkan kategori choicesnya dan ketika user tekan kategori yang ada di navbar main maka langsung menampilkan produk based on kategorinya. Caranya adalah pertama saya membuat class category pada models.py lanjut saya membuat fungsi product_list pada views.py, setelah itu melakukan routing url dan membuat template baru yaitu category.html yang disambungkan dengan fungsi yang telah saya buat di views. 
+
+
+
+
+
+
+
 
 
 

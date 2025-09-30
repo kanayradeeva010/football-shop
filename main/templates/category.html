@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pt-24">
+    <h1 class="text-3xl font-bold text-[#000080] mb-8">
+        Category: {{ current_category }}
+    </h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% for product in products %}
+            {% include 'card_product.html' %} 
+            {# Asumsi Anda memiliki product card di file terpisah bernama product_card.html #}
+        {% empty %}
+            <p class="text-gray-600 col-span-full">
+                No products found in the '{{ current_category }}' category.
+            </p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

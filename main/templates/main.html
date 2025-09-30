@@ -1,73 +1,70 @@
- {% extends "base.html" %}
- {% block content %}
- <h1>Kavza</h1>
+{% extends 'base.html' %}
+{% load static %}
 
- <h5>NPM: </h5>
- <p>{{ npm }}<p>
+{% block meta %}
+<title>Kavza Football Shop</title>
+{% endblock meta %}
 
- <h5>Name:</h5>
- <p>{{ name }}</p>
+{% block content %}
+{% include 'navbar.html' %} 
 
- <h5>Class:</h5>
- <p>{{ class }}</p>
+<div class="bg-white w-full pt-16 min-h-screen font-inter">  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-<a href="{% url 'main:create_product' %}">
-  <button type="button">Add Product</button>
-</a>
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-black mb-2">Exclusive Football Collection</h1>
+      <p class="text-black-400">Elevate your game with premium gear and official merchandise</p>
+    </div>
 
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 
+     bg-[#080840] rounded-xl border border-[#1F3993] p-4 shadow-2xl shadow-black/70">
+      <div class="flex space-x-3 mb-4 sm:mb-0">
+        <a href="?" class="
+        {% if request.GET.filter == 'all' or not request.GET.filter %} 
+                      bg-[#FDB900] text-black shadow-md shadow-[#FDB900]/40 
+        {% else %}
+                      bg-transparent text-white border border-white/30
+        {% endif %} 
+        px-4 py-2 rounded-lg font-medium transition-colors 
+        hover:bg-[#FFD700] hover:text-black hover:border-transparent">
+          All Product
+        </a>
+        <a href="?filter=my" class="
+          {% if request.GET.filter == 'my' %} 
+                        bg-[#FDB900] text-black shadow-md shadow-[#FDB900]/40 
+           {% else %}
+                        bg-transparent text-white border border-white/30
+           {% endif %} 
+            px-4 py-2 rounded-lg font-medium transition-colors 
+           hover:bg-[#FFD700] hover:text-black hover:border-transparent">
+          My Product
+        </a>
+      </div>
+      {% if user.is_authenticated %}
+            <div class="text-sm text-gray-400">
+          Last login: <span class="text-white">{{ last_login }}</span>
+        </div>
+      {% endif %}
+    </div>
 
-<a href="{% url 'main:logout' %}">
-  <button>Logout</button>
-</a>
-
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-
-<hr>
-
-<a href="?filter=all">
-    <button type="button">All Products</button>
-</a>
-<a href="?filter=my">
-    <button type="button">My Products</button>
-</a> 
-
-
-{% if not product_list %}
-<p>Belum ada data produk pada product shop.</p>
-{% else %}
-
-
-{% for product in product_list %}
-<div>
-  <h2><a href="{% url 'main:show_product' product.id %}">{{ product.name }}</a></h2>
-
-  <p>
-    <b>{{ product.get_category_display }}</b>
-    {% if product.is_featured %} | <b>Featured</b>{% endif %}
-    {% if product.is_product_hot %} | <i>Hot Product</i>{% endif %}
-    | Views: {{ product.product_views }}
-</p>
-
-  {% if product.thumbnail %}
-  <img src="{{ product.thumbnail }}" alt="thumbnail" width="150" height="100">
-  <br />
-  {% endif %}
-
-  <p>{{ product.description|truncatewords:25 }}...</p>
-
-  <p><a href="{% url 'main:show_product' product.id %}"><button>Detail</button></a></p>
+    {% if not product_list %}
+      <div class="bg-[#080840] rounded-xl border border-[#1F3993] p-12 text-center shadow-2xl shadow-black/70">
+        <div class="w-32 h-32 mx-auto mb-4">
+          <img src="{% static 'image/no-product.png' %}" alt="No product available" class="w-full h-full object-contain filter brightness-150">
+        </div>
+        <h3 class="text-lg font-medium text-white mb-2">No product found</h3>
+        <p class="text-gray-400 mb-6">New arrivals are coming soon — stay tuned</p>
+        <a href="{% url 'main:create_product' %}" class="inline-flex items-center px-4 py-2 bg-[#42A5F5] text-white rounded-lg hover:bg-[#00BFFF] transition-colors shadow-lg shadow-[#42A5F5]/40">
+          Create Product
+        </a>
+      </div>
+    {% else %}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for product in product_list %}
+          {% include 'card_product.html' with product=product %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
 </div>
-
-<hr>
-{% endfor %}
-
-{% endif %}
-
-{% endblock %}
-
-
-
-
-
-
-
+{% endblock content %}

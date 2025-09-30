@@ -1,0 +1,27 @@
+<div class="flex space-x-4 mb-6">
+  <a href="{% url 'main:product_list' %}" 
+     class="px-4 py-2 rounded {% if not current_category %}bg-yellow-500 text-white{% else %}bg-gray-200{% endif %}">
+     All
+  </a>
+
+  {% for cat in categories %}
+    <a href="{% url 'main:product_list_by_category' cat.slug %}" 
+       class="px-4 py-2 rounded {% if current_category and current_category == cat %}bg-yellow-500 text-white{% else %}bg-gray-200{% endif %}">
+       {{ cat.name }}
+    </a>
+  {% endfor %}
+</div>
+
+<!-- Produk -->
+<div class="grid grid-cols-3 gap-6">
+  {% for product in products %}
+    <div class="border rounded p-4 bg-white shadow">
+      <h3 class="font-bold">{{ product.name }}</h3>
+      <p class="text-sm text-gray-500">{{ product.category.name }}</p>
+      <p class="text-yellow-600 font-semibold">Rp{{ product.price }}</p>
+      <p class="text-gray-700">{{ product.description|truncatechars:100 }}</p>
+    </div>
+  {% empty %}
+    <p>No products available in this category.</p>
+  {% endfor %}
+</div>
