@@ -4,7 +4,7 @@
       <div class="flex items-center justify-between h-16">
 
         <!-- Logo -->
-        <div class="flex items-center space-x-12 pl-16 lg:pl-16">
+        <div class="flex items-center space-x-4">
           <h1 class="text-2xl font-extrabold flex gap-2"> 
             <span class="text-[#000080]">Kavza</span>
             <span class="text-red-600 hover:text-red-700">Football Shop</span>
@@ -12,7 +12,7 @@
         </div>
           
         <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
+        <div class="hidden md:flex items-center space-x-12 mx-auto">
           <a href="/" class="text-black hover:text-[#000080] font-bold transition-colors">
             Home
           </a>
@@ -28,7 +28,7 @@
         </div>
     
         <!-- User Info + Auth -->
-      <div class="hidden md:flex items-center space-x-6 ml-auto"> <!-- tambahin ml-auto -->
+      <div class="hidden md:flex items-center space-x-6"> <!-- tambahin ml-auto -->
         {% if user.is_authenticated %}
           <div class="text-right px-4 py-2 bg-white/20 rounded-lg space-y-1">
             <div class="text-sm font-medium text-gray-900">{{ name|default:user.username }}</div>
