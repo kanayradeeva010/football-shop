@@ -440,6 +440,7 @@ Setelah selesai dengan semua styling yang ada di halaman home, saya mulai membua
 Lalu, setelah itu saya membuat navbar yang bisa membagi produk berdasarkan kategori choicesnya dan ketika user tekan kategori yang ada di navbar main maka langsung menampilkan produk based on kategorinya. Caranya adalah pertama saya membuat class category pada models.py lanjut saya membuat fungsi product_list pada views.py, setelah itu melakukan routing url dan membuat template baru yaitu category.html yang disambungkan dengan fungsi yang telah saya buat di views. 
 
 
+test
 
 
 
